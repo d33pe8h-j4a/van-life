@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Root() {
     const [activeNavLink, setActiveNavLink] = useState("");

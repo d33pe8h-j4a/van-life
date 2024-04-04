@@ -101,7 +101,7 @@ footer {
 
 #home button {
     padding: 10px;
-    width: 500px;
+    width: 100%;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 15.95px;
     font-weight: 700;
@@ -124,8 +124,6 @@ footer {
 }
 
 #about img {
-    width: 100%;
-    aspect-ratio: 548.15 / 233.21;
     object-fit: cover;
 }
 
@@ -163,7 +161,7 @@ footer {
     font-size: 24px;
     font-weight: 700;
     line-height: 30px;
-    width: 420px;
+    width: 100%;
     margin: 0;
 }
 
