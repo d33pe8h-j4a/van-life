@@ -5,6 +5,7 @@ import "./index.css";
 import Root from "./routes/root";
 import About from "./routes/about";
 import Index from "./routes";
+import "./server";
 
 const router = createBrowserRouter([
     {
