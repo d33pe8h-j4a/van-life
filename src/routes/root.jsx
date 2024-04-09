@@ -31,7 +31,7 @@ function Root() {
                 </p>
                 <p>
                     <NavLink
-                        to={""}
+                        to={"vans"}
                         className={activeNavLink === "vans" ? "active" : ""}
                         onClick={() => handleClick("vans")}
                     >

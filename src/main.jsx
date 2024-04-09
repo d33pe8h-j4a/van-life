@@ -5,12 +5,16 @@ import "./index.css";
 import Root from "./routes/root";
 import About from "./routes/about";
 import Index from "./routes";
+import Vans from "./routes/vans";
+import ErrorPage from "./routes/error-page";
+import Van from "./routes/van";
 import "./server";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
@@ -19,6 +23,14 @@ const router = createBrowserRouter([
             {
                 path: "/about",
                 element: <About />,
+            },
+            {
+                path: "/vans",
+                element: <Vans />,
+            },
+            {
+                path: "/vans/:vanId",
+                element: <Van />,
             },
         ],
     },
