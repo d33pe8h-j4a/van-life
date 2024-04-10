@@ -12,7 +12,6 @@ function Vans() {
                     throw new Error("Failed to fetch vans data");
                 }
                 const data = await res.json();
-                console.log("Fetched data:", data);
                 setVansData(data.vans);
             } catch (error) {
                 console.error("Error fetching vans data:", error);

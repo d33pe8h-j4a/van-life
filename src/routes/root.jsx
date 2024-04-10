@@ -39,7 +39,9 @@ function Root() {
                     </NavLink>
                 </p>
             </nav>
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
             <footer>Ⓒ 2022 #VANLIFE</footer>
         </div>
     );

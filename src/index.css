@@ -20,6 +20,12 @@ body {
     height: 100vh;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
@@ -74,10 +80,10 @@ footer {
 #home {
     color: white;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
+    align-items: center;
     padding: 0 27px;
+    height: 100%;
+    width: 100%;
     background-image: linear-gradient(
             180deg,
             rgba(0, 0, 0, 0.45) 0%,
@@ -90,21 +96,30 @@ footer {
     background-size: cover; /* Resize the background image to cover the entire container */
 }
 
-#home h1 {
+#home .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    max-width: 500px;
+}
+
+#home .container h1 {
     font-size: 36px;
     font-weight: 800;
     line-height: 42px;
     margin-bottom: 22px;
 }
 
-#home p {
+#home .container p {
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
     margin-bottom: 50px;
 }
 
-#home button {
+#home .container button {
     padding: 10px;
     width: 100%;
     font-size: 15.95px;
@@ -125,6 +140,7 @@ footer {
     justify-content: center;
     align-items: center;
     color: #161616;
+    max-width: 500px;
 }
 
 #about img {
@@ -288,7 +304,8 @@ footer {
     top: 20px;
 }
 
-#vans .van-card .van-type {
+#vans .van-card .van-type,
+#van .van-details .van-type {
     border-radius: 5px;
     color: #ffead0;
     font-size: 16px;
@@ -325,6 +342,86 @@ footer {
 #vans .van-card .van-type.luxury:hover,
 .van-type.luxury.selected {
     background-color: #161616;
+}
+
+/************Van section************/
+#van {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 40px;
+    padding: 27px;
+    padding-bottom: 85px;
+    color: #161616;
+    max-width: 500px;
+}
+
+#van button.back-link {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 11px;
+}
+
+#van .back-link p {
+    text-decoration: underline;
+}
+
+#van img {
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+#van .van-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 16px;
+}
+
+#van .van-details .van-name {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 33.65px;
+    margin: 0;
+}
+
+#van .van-details .pricing {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 44.15px;
+    margin: 0;
+}
+
+#van .van-details .pricing span {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 44.15px;
+}
+
+#van .van-details .van-desc {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23.92px;
+    margin: 0;
+}
+
+#van .van-details button {
+    background-color: #ff8c38;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 31.66px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
 }
 
 /******Utility******/
