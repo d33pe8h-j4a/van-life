@@ -2,18 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import Root from "./routes/root";
+import Layout from "./components/layout";
 import About from "./routes/about";
-import Index from "./routes";
-import Vans from "./routes/vans";
+import Index from "./routes/home";
+import Vans from "./routes/vans/vans";
 import ErrorPage from "./routes/error-page";
-import Van from "./routes/van";
+import Van from "./routes/vans/van";
+import Dashboard from "./routes/host/dashboard";
+import Income from "./routes/host/income";
+import Reviews from "./routes/host/reviews";
 import "./server";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />,
+        element: <Layout />,
         errorElement: <ErrorPage />,
         children: [
             {
@@ -31,6 +34,20 @@ const router = createBrowserRouter([
             {
                 path: "/vans/:vanId",
                 element: <Van />,
+            },
+            {
+                path: "/host",
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: "/host/income",
+                        element: <Income />,
+                    },
+                    {
+                        path: "/host/reviews",
+                        element: <Reviews />,
+                    },
+                ],
             },
         ],
     },
