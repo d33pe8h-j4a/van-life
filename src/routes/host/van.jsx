@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function Van() {
+function HostVanDetails() {
     const { vanId } = useParams();
-    const [vanData, setVanData] = useState(null);
+    const [vanData, setVanData] = useState();
     useEffect(() => {
         async function getVanData() {
             const res = await fetch(`/api/host/vans/${vanId}`);
             const data = await res.json();
-            setVanData(data.vans);
+            setVanData(data.vans[0]);
         }
         getVanData();
     }, [vanId]);
@@ -22,9 +22,9 @@ function Van() {
     return (
         <div id="van">
             {vanData ? (
-                <>
+                <section id="host-van-details">
                     <button className="back-link" onClick={goBack}>
-                        <i class="fa-solid fa-arrow-left"></i>
+                        <i className="fa-solid fa-arrow-left"></i>
                         <p>Back to all vans</p>
                     </button>
                     <img
@@ -43,11 +43,11 @@ function Van() {
                         <p className="van-desc">{vanData.description}</p>
                         <button>Rent this van</button>
                     </div>
-                </>
+                </section>
             ) : (
                 <h2>Loading...</h2>
             )}
         </div>
     );
 }
-export default Van;
+export default HostVanDetails;

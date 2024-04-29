@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/header";
+import Header from "./header";
+import Footer from "./footer";
 
 function Layout() {
     return (
@@ -8,7 +9,7 @@ function Layout() {
             <main>
                 <Outlet />
             </main>
-            <footer>Ⓒ 2022 #VANLIFE</footer>
+            <Footer />
         </div>
     );
 }

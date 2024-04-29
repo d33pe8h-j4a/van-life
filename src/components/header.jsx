@@ -1,52 +1,31 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import Navbar from "./navbar";
 
 function Header() {
-    const [activeNavLink, setActiveNavLink] = useState("");
-    function handleClick(activeLink) {
-        setActiveNavLink(activeLink);
-    }
+    const navLinks = [
+        { path: "host", tab: "host", isDefault: false },
+        { path: "about", tab: "about", isDefault: false },
+        { path: "vans", tab: "vans", isDefault: false },
+    ];
+
+    const activeStyle = {
+        fontWeight: "bold",
+        textDecoration: "underline",
+        color: "#161616",
+    };
+
     return (
-        <nav>
-            <h2>
+        <div id="header">
+            <h1>
                 <NavLink
                     to={""}
-                    className={`brand-name ${
-                        activeNavLink === "home" ? "active" : ""
-                    }`}
-                    onClick={() => handleClick("home")}
+                    style={({ isActive }) => (isActive ? activeStyle : {})}
                 >
                     #VANLIFE
                 </NavLink>
-            </h2>
-            <p>
-                <NavLink
-                    to={"host"}
-                    className={activeNavLink === "host" ? "active" : ""}
-                    onClick={() => handleClick("host")}
-                >
-                    Host
-                </NavLink>
-            </p>
-            <p>
-                <NavLink
-                    to={"about"}
-                    className={activeNavLink === "about" ? "active" : ""}
-                    onClick={() => handleClick("about")}
-                >
-                    About
-                </NavLink>
-            </p>
-            <p>
-                <NavLink
-                    to={"vans"}
-                    className={activeNavLink === "vans" ? "active" : ""}
-                    onClick={() => handleClick("vans")}
-                >
-                    Vans
-                </NavLink>
-            </p>
-        </nav>
+            </h1>
+            <Navbar navLinks={navLinks} />
+        </div>
     );
 }
 

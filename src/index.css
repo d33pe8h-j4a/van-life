@@ -12,18 +12,13 @@ html,
 body {
     margin: 0;
     padding: 0;
+    background-color: rgb(227, 242, 255);
 }
 
 #main-section {
     display: grid;
     grid-template-rows: 111.62px auto 74.75px;
     height: 100vh;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 button {
@@ -33,7 +28,6 @@ button {
 nav {
     display: flex;
     align-items: center;
-    padding: 36px 26px;
 }
 
 a {
@@ -42,26 +36,18 @@ a {
     color: inherit;
 }
 
-nav h2 {
-    font-size: 25.35px;
-    font-weight: 900;
-    line-height: 40.27px;
-    margin: 0;
-    margin-right: auto;
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0;
 }
 
-nav h2 > a {
-    color: black;
-}
-
-nav p {
+nav ul > li {
     font-size: 16px;
     font-weight: 600;
     line-height: 22.92px;
-    margin: auto 8px;
-}
-
-nav p > a {
     color: #4d4d4d;
 }
 
@@ -77,13 +63,27 @@ footer {
     line-height: 22.92px;
 }
 
+#header {
+    display: flex;
+    align-items: center;
+    padding: 36px 26px;
+}
+
+#header h1 {
+    font-size: 25.35px;
+    font-weight: 900;
+    line-height: 40.27px;
+    margin: 0;
+    margin-right: auto;
+    color: black;
+}
+
 #home {
     color: white;
     display: flex;
     align-items: center;
     padding: 0 27px;
     height: 100%;
-    width: 100%;
     background-image: linear-gradient(
             180deg,
             rgba(0, 0, 0, 0.45) 0%,
@@ -169,23 +169,27 @@ footer {
     width: 100%;
 }
 
-#about .explore-banner {
+#about .content .explore-banner {
     border-radius: 5px;
     background-color: #ffcc8d;
     margin-top: 55px;
-    padding: 32px 37px;
     margin-bottom: 53px;
+    width: 100%;
 }
 
-#about .explore-banner h2 {
+#about .content .explore-banner h2 {
     font-size: 24px;
     font-weight: 700;
     line-height: 30px;
     width: 100%;
-    margin: 0;
+    margin: 0 37px;
 }
 
-#about .explore-banner button {
+#about .content .explore-banner h2:first-child {
+    margin-top: 32px;
+}
+
+#about .content .explore-banner button {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 15.95px;
     font-weight: 700;
@@ -195,7 +199,7 @@ footer {
     border-radius: 10px;
     color: white;
     background-color: #161616;
-    margin-top: 25px;
+    margin: 25px 37px 32px;
 }
 
 /************Vans Section*************/
@@ -422,6 +426,174 @@ footer {
     padding: 10px;
     text-align: center;
     width: 100%;
+}
+
+/***************Hosts Section*****************/
+#host nav {
+    padding-left: 26px;
+}
+
+#host nav ul > li {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22.92px;
+    margin: 0;
+}
+
+/***********DashBoard Section********/
+#dashboard {
+    display: flex;
+    flex-direction: column;
+    color: #161616;
+    margin-top: 10px;
+}
+
+#dashboard .summary {
+    background-color: #ffead0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 37px 27px;
+}
+
+#dashboard .summary h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 0;
+}
+
+#dashboard .summary .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dashboard .summary .details p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    margin: 0;
+    color: #4d4d4d;
+}
+
+#dashboard .summary .details p span {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    color: #161616;
+    text-decoration: underline;
+}
+
+#dashboard a {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    text-decoration: none;
+}
+
+#dashboard .summary #income-value {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 38px;
+    margin: 0;
+}
+
+#dashboard .review {
+    background-color: #ffddb2;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 27px;
+}
+
+#dashboard .review h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 0;
+    margin-right: 12px;
+}
+
+#dashboard .review p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 22px;
+    margin: 0;
+    margin-right: auto;
+    color: #4d4d4d;
+}
+
+#dashboard .review p span {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
+    color: #161616;
+}
+
+.van-details {
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+}
+
+.van-details .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.van-details .heading h4 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 0;
+}
+
+.van-details .vans {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.van-details .vans .van {
+    background-color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.van-details .vans .van img {
+    width: 65px;
+    margin: 18px 24px;
+    border-radius: 4px;
+}
+
+.van-details .vans .van .van-info {
+    margin-right: auto;
+}
+
+.van-details .vans .van .van-info .van-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.van-details .vans .van .van-info .van-price {
+    font-size: 16px;
+    font-weight: 500;
+    color: #4d4d4d;
+    margin: 0;
+}
+
+.van-details .vans .van a {
+    margin-right: 24px;
 }
 
 /******Utility******/
