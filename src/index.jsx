@@ -14,6 +14,9 @@ import Income from "./routes/host/income";
 import Reviews from "./routes/host/reviews";
 import HostVan from "./routes/host/vans";
 import HostVanDetails from "./routes/host/van";
+import Details from "./routes/host/van/details";
+import Pricing from "./routes/host/van/pricing";
+import Photos from "./routes/host/van/photos";
 import "./server";
 
 const router = createBrowserRouter([
@@ -61,6 +64,20 @@ const router = createBrowserRouter([
                     {
                         path: "vans/:vanId",
                         element: <HostVanDetails />,
+                        children: [
+                            {
+                                index: true,
+                                element: <Details />,
+                            },
+                            {
+                                path: "pricing",
+                                element: <Pricing />,
+                            },
+                            {
+                                path: "photos",
+                                element: <Photos />,
+                            },
+                        ],
                     },
                 ],
             },

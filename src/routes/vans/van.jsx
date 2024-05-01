@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 
 function Van() {
     const { vanId } = useParams();
     const [vanData, setVanData] = useState(null);
+    const location = useLocation();
+    console.log(location);
     useEffect(() => {
         async function getVanData() {
-            const res = await fetch(`/api/host/vans/${vanId}`);
+            const res = await fetch(`/api/vans/${vanId}`);
             const data = await res.json();
             setVanData(data.vans);
         }
@@ -23,10 +25,16 @@ function Van() {
         <div id="van">
             {vanData ? (
                 <>
-                    <button className="back-link" onClick={goBack}>
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <p>Back to all vans</p>
-                    </button>
+                    <Link
+                        to={".." + "?" + location.state?.search}
+                        relative="path"
+                        className="back-link"
+                    >
+                        <i className="fa-solid fa-arrow-left"></i>
+                        <p>
+                            Back to {location.state ? vanData.type : "all"} vans
+                        </p>
+                    </Link>
                     <img
                         src={vanData.imageUrl}
                         alt={`Image of ${vanData.name}`}

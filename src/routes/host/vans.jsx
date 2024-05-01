@@ -20,20 +20,21 @@ function HostVans() {
     }, []);
 
     const vansItems = vansData.map((van) => (
-        <Link
-            to={`${van.id}`}
-            aria-label={`View details for ${van.name}, 
+        <div className="van" key={van.id}>
+            <Link
+                to={`${van.id}`}
+                aria-label={`View details for ${van.name}, 
     priced at $${van.price} per day`}
-            className="van"
-            key={van.id}
-        >
-            <img src={van.imageUrl} alt={`Image of ${van.name}`} />
-            <div className="van-info">
-                <p className="van-name">{van.name}</p>
-                <p className="van-price">${van.price}/day</p>
-            </div>
+                className="van"
+            >
+                <img src={van.imageUrl} alt={`Image of ${van.name}`} />
+                <div className="van-info">
+                    <p className="van-name">{van.name}</p>
+                    <p className="van-price">${van.price}/day</p>
+                </div>
+            </Link>
             <NavLink>Edit</NavLink>
-        </Link>
+        </div>
     ));
 
     return (
