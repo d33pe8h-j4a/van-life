@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Navbar from "./navbar";
 
 function Header() {
@@ -25,6 +25,16 @@ function Header() {
                 </NavLink>
             </h1>
             <Navbar navLinks={navLinks} />
+            <Link to="login" className="login-link">
+                <i className="fa-regular fa-user login-icon"></i>
+            </Link>
+            <button
+                onClick={() => {
+                    localStorage.removeItem("loggedIn");
+                }}
+            >
+                X
+            </button>
         </div>
     );
 }

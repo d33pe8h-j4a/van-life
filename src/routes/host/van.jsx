@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import { useLoaderData, Outlet, Link, defer, Await } from "react-router-dom";
+import { Suspense } from "react";
 import Navbar from "../../components/navbar";
-import { useParams, Outlet, Link } from "react-router-dom";
+import { getHostVans } from "../../api";
+import { requireAuth } from "../../utils";
+import SpinLoader from "../../loaders/spinLoader";
+
+export async function loader({ request, params }) {
+    await requireAuth(request);
+    return defer({ hostVan: getHostVans(params.id) });
+}
 
 function HostVanDetails() {
-    const { vanId } = useParams();
-    const [vanData, setVanData] = useState();
-    useEffect(() => {
-        async function getVanData() {
-            const res = await fetch(`/api/host/vans/${vanId}`);
-            const data = await res.json();
-            setVanData(data.vans[0]);
-        }
-        getVanData();
-    }, [vanId]);
-    const colorClass = vanData ? vanData.type : "";
+    const loaderData = useLoaderData();
     const capitalizeFirstLetter = (str) =>
         `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 
@@ -24,40 +22,45 @@ function HostVanDetails() {
     ];
 
     return (
-        <div id="van">
-            {vanData ? (
-                <>
-                    <Link to=".." className="back-link" relative="path">
-                        <i className="fa-solid fa-arrow-left"></i>
-                        <p>Back to all vans</p>
-                    </Link>
-                    <section id="host-van-details">
-                        <div className="van-info">
-                            <img
-                                src={vanData.imageUrl}
-                                alt={`Image of ${vanData.name}`}
-                            />
-                            <div className="van-name-price">
-                                <div
-                                    className={`van-type ${colorClass} selected`}
-                                >
-                                    {capitalizeFirstLetter(colorClass)}
+        <Suspense fallback={<SpinLoader />}>
+            <Await resolve={loaderData.hostVan}>
+                {([hostVan]) => {
+                    const colorClass = hostVan ? hostVan.type : "";
+                    return (
+                        <div id="van">
+                            <Link to=".." className="back-link" relative="path">
+                                <i className="fa-solid fa-arrow-left"></i>
+                                <p>Back to all vans</p>
+                            </Link>
+                            <section id="host-van-details">
+                                <div className="van-info">
+                                    <img
+                                        src={hostVan.imageUrl}
+                                        alt={`Image of ${hostVan.name}`}
+                                    />
+                                    <div className="van-name-price">
+                                        <div
+                                            className={`van-type ${colorClass} selected`}
+                                        >
+                                            {capitalizeFirstLetter(colorClass)}
+                                        </div>
+                                        <h1 className="van-name">
+                                            {hostVan.name}
+                                        </h1>
+                                        <p className="pricing">
+                                            ${hostVan.price}
+                                            <span>/day</span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <h1 className="van-name">{vanData.name}</h1>
-                                <p className="pricing">
-                                    ${vanData.price}
-                                    <span>/day</span>
-                                </p>
-                            </div>
+                                <Navbar navLinks={navLinks} />
+                                <Outlet context={[hostVan]} />
+                            </section>
                         </div>
-                        <Navbar navLinks={navLinks} />
-                        <Outlet context={[vanData]} />
-                    </section>
-                </>
-            ) : (
-                <h2>Loading...</h2>
-            )}
-        </div>
+                    );
+                }}
+            </Await>
+        </Suspense>
     );
 }
 export default HostVanDetails;
