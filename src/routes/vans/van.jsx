@@ -6,11 +6,11 @@ import {
     Await,
 } from "react-router-dom";
 import { Suspense } from "react";
-import { getVans } from "../../api";
+import { getVan } from "../../api";
 import SpinLoader from "../../loaders/spinLoader";
 
 export function loader({ params }) {
-    return defer({ van: getVans(params.vanId) });
+    return defer({ van: getVan(params.vanId) });
 }
 
 function Van() {

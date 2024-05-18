@@ -1,13 +1,13 @@
 import { useLoaderData, Outlet, Link, defer, Await } from "react-router-dom";
 import { Suspense } from "react";
 import Navbar from "../../components/navbar";
-import { getHostVans } from "../../api";
+import { getVan } from "../../api";
 import { requireAuth } from "../../utils";
 import SpinLoader from "../../loaders/spinLoader";
 
 export async function loader({ request, params }) {
     await requireAuth(request);
-    return defer({ hostVan: getHostVans(params.id) });
+    return defer({ hostVan: getVan(params.vanId) });
 }
 
 function HostVanDetails() {
@@ -24,7 +24,7 @@ function HostVanDetails() {
     return (
         <Suspense fallback={<SpinLoader />}>
             <Await resolve={loaderData.hostVan}>
-                {([hostVan]) => {
+                {(hostVan) => {
                     const colorClass = hostVan ? hostVan.type : "";
                     return (
                         <div id="van">
